@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  app:
+    build: ./
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app
+    environment:
+      - TZ=Asia/Shanghai
+  redis:
+    image: redis:latest
+    volumes:
+      - redis:/data
+    environment:
+      - TZ=Asia/Shanghai
+  mysql:
+    ports:
+      - 3306:3306
+    image: mysql:5.7
+    environment:
+    - MYSQL_ROOT_PASSWORD=123
+    - TZ=Asia/Shanghai
+      
+volumes:
+  redis:
+  mysql:
